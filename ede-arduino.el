@@ -77,7 +77,8 @@ Consider expanding this at some later date."
   (let* ((prefs (ede-arduino-sync))
          ;; without expansion the comparison in the next step fails
          ;; for relative files
-         (dir (expand-file-name dir))
+         (dir (cond (dir (expand-file-name dir))
+		    (t default-directory)))
          (sketchroot (and prefs (oref prefs sketchbook)))
          )
     (when (and
